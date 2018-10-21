@@ -1,15 +1,19 @@
 {
-    "name": "blog",
-    "version": "1.0.0",
-    "scripts": {
-      "client": "cd client && yarn start",
-      "server": "nodemon server.js",
-      "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-    },
-    "dependencies": {
-      "express": "^4.16.2"
-    },
-    "devDependencies": {
-      "concurrently": "^3.5.0"
-    }
+  "name": "blog",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && nodemon --exec babel-node server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.3.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "concurrently": "^3.5.0"
   }
+}

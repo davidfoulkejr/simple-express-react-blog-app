@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
     TextField,
@@ -10,8 +11,8 @@ import {
 
 const styles = theme => ({
     card: {
-        width: '800px',
-        maxWidth: '80%',
+        flex: '1 1 auto',
+        maxWidth: '800px',
         margin: '20px auto',
     },
     container: {
@@ -24,6 +25,10 @@ const styles = theme => ({
     },
     button: {
         margin: theme.spacing.unit
+    },
+    link: {
+        color: 'inherit',
+        textDecoration: 'none'
     }
 })
 
@@ -33,7 +38,11 @@ class CreatePost extends React.Component {
         this.state = {
             title: '',
             author: 'David Foulke',
-            content: ''
+            content: '',
+            error: {
+                title: '',
+                content: ''
+            }
         }
 
         this.handleCreatePost = this.handleCreatePost.bind(this);
@@ -42,25 +51,38 @@ class CreatePost extends React.Component {
     }
 
     updateTitle(event) {
-        this.setState({title: event.target.value});
+        this.setState({error: {
+            ...this.state.error,
+            title: ''
+        }});
+        this.props.onUpdateTitle(event);
     }
 
     updateBody(event) {
-        this.setState({content: event.target.value});
+        this.setState({error: {
+            ...this.state.error,
+            content: ''
+        }});
+        this.props.onUpdateBody(event);
     }
 
     handleCreatePost() {
-        const { title, author, content } = this.state;
-        this.props.onCreatePost(
-            title,
-            author,
-            content
-        );
+        const { title, author, content } = this.props;
 
-        this.setState({
-            title: '',
-            content: ''
-        });
+        if (title === '' || content === '') {
+            const message = 'This field cannot be empty';
+            let error = {};
+            if (title === '') error.title = message;
+            if (content === '') error.content = message;
+            this.setState({ error });
+        }
+        else {
+            this.props.onCreatePost(
+                title,
+                author,
+                content
+            );
+        }
     }
 
     render() {
@@ -76,31 +98,36 @@ class CreatePost extends React.Component {
                             id='input-title'
                             label='Title'
                             className={classes.textField}
-                            value={this.state.title}
+                            value={this.props.title}
                             onChange={this.updateTitle}
                             margin='normal'
+                            helperText={this.state.error.title}
+                            error={this.state.error.title !== '' ? true : false}
                             fullWidth
                         />
                         <TextField 
                             id='input-content'
                             label='Body'
                             multiline
-                            rowsMax='6'
                             className={classes.textField}
-                            value={this.state.content}
+                            value={this.props.content}
                             onChange={this.updateBody}
                             margin='normal'
+                            helperText={this.state.error.content}
+                            error={this.state.error.content !== '' ? true : false}
                             fullWidth
                         />
                     </form>
-                    <Button
-                        variant='contained'
-                        className={classes.button}
-                        color='secondary'
-                        onClick={this.handleCreatePost}
-                    >
-                        Post
-                    </Button>
+                    <Link to='/' className={classes.link}>
+                        <Button
+                            variant='contained'
+                            className={classes.button}
+                            color='secondary'
+                            onClick={this.handleCreatePost}
+                        >
+                            Post
+                        </Button>
+                    </Link>
                 </CardContent>
             </Card>
         );
