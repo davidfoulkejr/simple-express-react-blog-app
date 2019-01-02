@@ -32,18 +32,21 @@ const HeaderBar = props => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" className={classes.grow}>
-                        Hello World!
-                    </Typography>
-                    <Link to='/' className={classes.link}>
-                        <Button color="inherit">Home</Button>
-                    </Link>
-                    <Link to='/createpost' className={classes.link}>
-                        <Button color="inherit" onClick={props.onCreateButtonClick}>Create Post</Button>
-                    </Link>
-                </Toolbar>
+          <AppBar position="fixed">
+            <Toolbar>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                Hello World!
+              </Typography>
+              <Link to='/' className={classes.link}>
+                <Button color="inherit">Home</Button>
+              </Link>
+              <Link to='/movies' className={classes.link}>
+                <Button color="inherit">Movies</Button>
+              </Link>
+              <Link to='/people' className={classes.link}>
+                <Button color="inherit">People</Button>
+              </Link>
+            </Toolbar>
             </AppBar>
         </div>
     )

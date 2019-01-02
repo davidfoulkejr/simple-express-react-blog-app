@@ -85,6 +85,10 @@ class CreatePost extends React.Component {
         }
     }
 
+    componentDidMount() {
+      if (this.props.onMount) this.props.onMount();
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -105,7 +109,7 @@ class CreatePost extends React.Component {
                             error={this.state.error.title !== '' ? true : false}
                             fullWidth
                         />
-                        <TextField 
+                        <TextField
                             id='input-content'
                             label='Body'
                             multiline

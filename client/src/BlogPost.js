@@ -29,32 +29,32 @@ const BlogPost = props => {
     const { classes } = props;
     return (
         <ExpansionPanel className={classes.root} expanded={props.expanded} onChange={props.onToggle}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <div>
-                    <Typography variant='h5'>
-                        {props.title}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        By: {props.author}
-                    </Typography>
-                </div>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-                <Typography variant='body1'>
-                    {props.content.split('\n').map((paragraph, idx) => (
-                        <React.Fragment key={idx.toString()}>
-                            {paragraph}
-                            <br />
-                        </React.Fragment>
-                    ))}
-                </Typography>
-            </ExpansionPanelDetails>
-            <ExpansionPanelActions>
-                <Link to={"/editpost/" + props.id} className={classes.link}>
-                    <Button onClick={e => props.onEditButtonClick(props.id)} color='primary'>Edit</Button>
-                </Link>
-                <Button onClick={e => props.onDelete(props.id)} color='secondary'>Delete</Button>
-            </ExpansionPanelActions>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <div>
+              <Typography variant='h5'>
+                {props.title}
+              </Typography>
+              <Typography color="textSecondary">
+                By: {props.author}
+              </Typography>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography variant='body1'>
+              {props.content.split('\n').map((paragraph, idx) => (
+                <React.Fragment key={idx.toString()}>
+                  {paragraph}
+                  <br />
+                </React.Fragment>
+              ))}
+            </Typography>
+          </ExpansionPanelDetails>
+          <ExpansionPanelActions>
+            <Link to={"/editpost/" + props.id} className={classes.link}>
+              <Button color='primary'>Edit</Button>
+            </Link>
+            <Button onClick={e => props.onDelete(props.id)} color='secondary'>Delete</Button>
+          </ExpansionPanelActions>
         </ExpansionPanel>
     );
 }

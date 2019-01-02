@@ -4,11 +4,14 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "cd server && nodemon --exec babel-node server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"mongod\" \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "apollo-server-express": "^2.2.2",
     "express": "^4.16.2",
-    "mongoose": "^5.3.4"
+    "mongoose": "^5.3.4",
+    "neo4j-driver": "^1.7.1",
+    "neo4j-graphql-js": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
