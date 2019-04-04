@@ -7,8 +7,15 @@ import { ApolloServer, graphqlExpress, graphiqlExpress } from 'apollo-server-exp
 import schema from './schema';
 import driver from './driver';
 
+const MONGO_HOST = process.env.MONGO_HOST || 'localhost'
+
 // Setup
-const db = mongoose.connect('mongodb://127.0.0.1:27017/reactBlog', { useNewUrlParser: true });
+const db = mongoose.connect(`mongodb://${MONGO_HOST}:27017/reactBlog`, { useNewUrlParser: true })
+  .catch(e => {
+    console.log("Error connecting to MongoDB")
+    console.log(e)
+  });
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -23,10 +30,8 @@ const server = new ApolloServer({
   schema,
   context: { driver },
   playground: {
-    endpoint: `http://localhost:${port}/graphql`,
-    settings: {
-      'editor.theme': "light"
-    }
+    endpoint: `http://${process.env.API_HOST}:${port}/graphql`,
+    theme: 'dark'
   }
 })
 

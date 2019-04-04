@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "babel-node server.js",
+    "build": "babel -d ./build .",
+    "client": "cd ../client && yarn start",
+    "server": "nodemon --exec babel-node server.js --presets @babel/preset-env",
+    "dev": "concurrently --kill-others-on-fail \"mongod\" \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.2.2",
+    "express": "^4.16.2",
+    "graphql": "^14.1.1",
+    "mongoose": "^5.3.4",
+    "neo4j-driver": "^1.7.1",
+    "neo4j-graphql-js": "^1.0.5",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "concurrently": "^3.5.0"
+  }
+}

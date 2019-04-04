@@ -37,7 +37,7 @@ const HeaderBar = props => {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 Hello World!
               </Typography>
-              <Link to='/' className={classes.link}>
+              <Link to='/home' className={classes.link}>
                 <Button color="inherit">Home</Button>
               </Link>
               <Link to='/movies' className={classes.link}>

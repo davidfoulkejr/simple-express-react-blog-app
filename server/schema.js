@@ -1,5 +1,5 @@
-import { makeExecutableSchema } from 'graphql-tools';
-import resolvers from './resolvers';
+import { makeExecutableSchema } from'graphql-tools';
+import resolvers from'./resolvers';
 
 const typeDefs = `
   type Query {
@@ -32,6 +32,7 @@ const typeDefs = `
     id: ID!
     name: String
     url: String
+    image: String
     movies(limit: Int, offset: Int = 0): [Movie]
   }
 

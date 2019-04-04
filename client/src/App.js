@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import axios from 'axios';
 import ApolloClient from 'apollo-boost';
@@ -138,6 +138,12 @@ class App extends Component {
                 <Route
                   exact
                   path='/'
+                  render={() => (
+                    <Redirect to='/home' />
+                  )}
+                />
+                <Route
+                  path='/home'
                   render={() => (
                     <BlogList
                       posts={this.state.posts}
