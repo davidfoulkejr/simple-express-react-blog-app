@@ -14,6 +14,7 @@ import Movie from './Movie';
 import PersonList from './PersonList';
 import Person from './Person';
 import NoMatch from './NoMatch';
+import Blog from './views/Blog';
 
 const client = new ApolloClient();
 
@@ -113,7 +114,6 @@ class App extends Component {
   }
 
   handleEditPostStateChange(postId) {
-    console.log("Getting post");
     axios.get(`/api/posts/${postId}`)
       .then((res) => {
         console.log("Post found. Updating state");
@@ -183,6 +183,7 @@ class App extends Component {
                 <Route path="/movies" component={MovieList} />
                 <Route path="/people/:personId" component={Person} />
                 <Route path="/people" component={PersonList} />
+                <Route path='/blog' component={Blog} />
                 <Route component={NoMatch} />
               </Switch>
             </div>

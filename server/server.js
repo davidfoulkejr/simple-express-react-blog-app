@@ -25,6 +25,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/posts', postRouter);
+app.get('/api/hello', (req, res) => {
+  res.send('hello');
+})
 
 const server = new ApolloServer({
   schema,

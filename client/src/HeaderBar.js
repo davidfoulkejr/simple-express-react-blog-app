@@ -46,6 +46,9 @@ const HeaderBar = props => {
               <Link to='/people' className={classes.link}>
                 <Button color="inherit">People</Button>
               </Link>
+              <a href='/api/hello' className={classes.link}>
+                <Button color='inherit'>Sign In</Button>
+              </a>
             </Toolbar>
             </AppBar>
         </div>

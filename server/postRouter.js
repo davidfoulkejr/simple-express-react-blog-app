@@ -21,7 +21,6 @@ postRouter.route('/')
       ...req.body,
       private: false
     }
-    console.log(post)
     Post.create(post, (err, post) => {
       if (err) res.sendStatus(404);
       else res.status(201).send({ post });
