@@ -40,6 +40,10 @@ class PeopleList extends React.Component {
     this.setState({ searchText: e.currentTarget.value })
   }
 
+  componentDidMount() {
+    console.log(this.props.match);
+  }
+
   render() {
     const { match } = this.props;
     const { page, show, searchText } = this.state;

@@ -44,7 +44,7 @@ const Person = props => {
     <Query query={query}>
       {({ loading, error, data }) => {
         if (loading) return <div>Loading...</div>
-        if (error) return <div style={{color: 'red'}}>{`Error! ${error}`}</div>
+        if (error) return <div style={{ color: 'red' }}>{`Error! ${error}`}</div>
 
         const person = data.person;
         return (
@@ -57,7 +57,7 @@ const Person = props => {
                 if (a.year < b.year) return 1;
                 return 0;
               }).map(({ id, title, year }) => (
-                <span key={id}><Link to={`/movies/${id}`}>{`${title} (${year})`}</Link></span>
+                <span key={id}><Link to={`/movies/details/${id}`}>{`${title} (${year})`}</Link></span>
               ))}
             </div>
           </div>

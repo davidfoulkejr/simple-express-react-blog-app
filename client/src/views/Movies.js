@@ -12,7 +12,7 @@ class Movies extends React.Component {
       <Switch>
         <Route exact path={match.url} component={MovieList} />
         <Route path={`${match.url}/details/:movieId`} component={Movie} />
-        <Route path={`${match.url}/people`} component={PeopleList} />
+        <Route exact path={`${match.url}/people`} component={PeopleList} />
         <Route path={`${match.url}/people/details/:personId`} component={Person} />
       </Switch>
     )

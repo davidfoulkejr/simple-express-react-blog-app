@@ -94,26 +94,26 @@ const Movie = props => {
                   <div className={classes.flexList}>
                     <span>Cast:</span>
                     {movie.cast.reverse().map(person => (
-                      <span key={person.id}><Link to={`/people/${person.id}`}>{person.name}</Link></span>
+                      <span key={person.id}><Link to={`/movies/people/details/${person.id}`}>{person.name}</Link></span>
                     ))}
                   </div>
                   <div className={classes.flexList}>
                     <span>Director(s):</span>
                     {movie.director.reverse().map(person => (
-                      <span key={person.id}><Link to={`/people/${person.id}`}>{person.name}</Link></span>
+                      <span key={person.id}><Link to={`/movies/people/details/${person.id}`}>{person.name}</Link></span>
                     ))}
                   </div>
                   <div className={classes.flexList}>
                     <span>Writer(s):</span>
                     {movie.writer.reverse().map(person => (
-                      <span key={person.id}><Link to={`/people/${person.id}`}>{person.name}</Link></span>
+                      <span key={person.id}><Link to={`/movies/people/details/${person.id}`}>{person.name}</Link></span>
                     ))}
                   </div>
                   <div>
                     <h4>Similar To:</h4>
                     <div className={classes.vertList}>
                       {movie.similar.map(({ id, title, year }) => (
-                        <span key={id}><Link to={`/movies/${id}`}>{`${title} (${year})`}</Link></span>
+                        <span key={id}><Link to={`/movies/details/${id}`}>{`${title} (${year})`}</Link></span>
                       ))}
                     </div>
                   </div>
