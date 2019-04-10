@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import BlogList from '../components/blog/BlogList';
-import Post from '../components/blog/Post';
-import CreatePost from '../CreatePost';
+import { BlogList, CreatePost, Post } from '../components/blog';
 
 class Blog extends React.Component {
   render() {

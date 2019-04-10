@@ -7,12 +7,18 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: {},
+      post: {
+        title: '',
+        content: '',
+        author: '',
+        private: false
+      },
       editing: false,
     }
     this.toggleEdit = this.toggleEdit.bind(this);
     this.changeField = this.changeField.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   toggleEdit() {
@@ -38,6 +44,14 @@ class Post extends React.Component {
     this.toggleEdit();
   }
 
+  async onDelete() {
+    const { postId } = this.props.match.params;
+    const res = await axios.delete(`/api/posts/${postId}`);
+    if (res.status === 204) {
+      window.location.href = '/';
+    }
+  }
+
   async componentDidMount() {
     const { postId } = this.props.match.params;
     const res = await axios.get(`/api/posts/${postId}`);
@@ -47,34 +61,35 @@ class Post extends React.Component {
 
   render() {
     const { post, editing } = this.state;
-    const { title } = post;
+    const title = editing ? "Edit Post" : post.title;
     return (
       <Page title={title}>
-        <Grid container direction='column' spacing={16}>
-          <Grid item>
-            {editing ? (
-              <TextField
-                fullWidth
-                value={post.title}
-                onChange={this.changeField('title')}
-              />
-            ) : (
-              <Typography variant='body2'>By: {post.author}</Typography>
-            )}
-          </Grid>
-          <Grid item>
-            {editing ? (
-              <TextField
-                fullWidth
-                multiline
-                variant='outlined'
-                value={post.content}
-                onChange={this.changeField('content')}
-              />
-            ) : (
-              <Typography variant='body1'>{post.content}</Typography>
-            )}
-          </Grid>
+        {editing ? (
+          <TextField
+            fullWidth
+            value={post.title}
+            onChange={this.changeField('title')}
+          />
+        ) : (
+          <Typography variant='body2'>By: {post.author}</Typography>
+        )}
+
+        {editing ? (
+          <TextField
+            fullWidth
+            multiline
+            variant='outlined'
+            value={post.content}
+            onChange={this.changeField('content')}
+          />
+        ) : post.content.split('\n\n').map((paragraph) => (
+          <React.Fragment>
+            <Typography variant='body1'>{paragraph}</Typography>
+            <br />
+          </React.Fragment>
+        ))}
+
+        <Grid container justify='space-between'>
           <Grid item>
             {editing ? (
               <Button color='primary' variant='contained' onClick={this.onSave}>Save</Button>
@@ -82,8 +97,10 @@ class Post extends React.Component {
               <Button color='primary' onClick={this.toggleEdit}>Edit</Button>
             )}
           </Grid>
+          <Grid item>
+            <Button color='secondary' onClick={this.onDelete}>Delete</Button>
+          </Grid>
         </Grid>
-
       </Page>
     )
   }

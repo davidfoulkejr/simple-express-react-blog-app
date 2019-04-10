@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, withStyles, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import Page from '../../Page';
+
+const styles = theme => ({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing.unit * 4,
+    right: theme.spacing.unit * 4
+  }
+})
 
 class BlogList extends React.Component {
   constructor(props) {
@@ -19,6 +28,7 @@ class BlogList extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { posts } = this.state;
     return (
       <Page title='Posts'>
@@ -29,9 +39,18 @@ class BlogList extends React.Component {
             </ListItem>
           ))}
         </List>
+        <Fab
+          className={classes.fab}
+          color='secondary'
+          title="New Post"
+          component={Link}
+          to="/blog/create"
+        >
+          <AddIcon />
+        </Fab>
       </Page>
     )
   }
 }
 
-export default BlogList;
+export default withStyles(styles)(BlogList);
