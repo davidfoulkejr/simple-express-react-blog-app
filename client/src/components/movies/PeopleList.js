@@ -24,13 +24,13 @@ class PeopleList extends React.Component {
     this.setState({ show: parseInt(e.currentTarget.textContent) });
   }
 
-  nextPage(state, props) {
+  nextPage(state) {
     return {
       page: state.page + 1
     }
   }
 
-  prevPage(state, props) {
+  prevPage(state) {
     return {
       page: state.page - 1
     }
@@ -38,10 +38,6 @@ class PeopleList extends React.Component {
 
   changeText(e) {
     this.setState({ searchText: e.currentTarget.value })
-  }
-
-  componentDidMount() {
-    console.log(this.props.match);
   }
 
   render() {

@@ -8,7 +8,6 @@ ENV PATH=$PATH:/app/node_modules/.bin
 ENV MONGO_HOST="mongo"
 ENV GRAPH_HOST="graph"
 ENV NEO4J_USER="neo4j"
-ENV NEO4J_PASS="fhdiGEN82&sk@PLD"
 
 RUN cd /app && yarn
 

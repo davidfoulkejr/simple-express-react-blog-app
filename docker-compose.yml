@@ -10,6 +10,8 @@ services:
     links:
       - mongo
       - graph
+    environment:
+      - NEO4J_PASS=${NEO4J_PASS}
   app:
     build: ./client/
     container_name: app

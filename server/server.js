@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import postRouter from './postRouter';
 
-import { ApolloServer, graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import schema from './schema';
 import driver from './driver';
 
@@ -25,9 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/posts', postRouter);
-app.get('/api/hello', (req, res) => {
-  res.send('hello');
-})
 
 const server = new ApolloServer({
   schema,
