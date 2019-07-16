@@ -5,6 +5,7 @@ ADD package.json /app/package.json
 
 ENV NODE_PATH=/app/node_modules
 ENV PATH=$PATH:/app/node_modules/.bin
+ENV API_HOST="localhost"
 ENV MONGO_HOST="mongo"
 ENV GRAPH_HOST="graph"
 ENV NEO4J_USER="neo4j"

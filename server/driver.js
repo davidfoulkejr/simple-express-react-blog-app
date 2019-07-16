@@ -1,8 +1,10 @@
-import { v1 as neo4j } from 'neo4j-driver';
+import { v1 as neo4j } from "neo4j-driver";
 
-const GRAPH_HOST = process.env.GRAPH_HOST || 'localhost'
+const GRAPH_HOST = process.env.GRAPH_HOST || "localhost";
 
-module.exports = neo4j.driver(
+const { NEO4J_USER, NEO4J_PASS } = process.env;
+
+export default neo4j.driver(
   `bolt://${GRAPH_HOST}:7687`,
-  neo4j.auth.basic(process.env.NEO4J_USER, process.env.NEO4J_PASS)
-)
+  neo4j.auth.basic(NEO4J_USER, NEO4J_PASS)
+);

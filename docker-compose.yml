@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   api:
     build: ./server/
@@ -24,8 +24,8 @@ services:
   mongo:
     image: mongo
     container_name: mongo
-    volumes:
-      - $MONGO_HOME/db:/data/db
+    #volumes:
+    #  - $MONGO_HOME/db:/data/db
     ports:
       - "27017:27017"
   graph:
